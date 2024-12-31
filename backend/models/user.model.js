@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
     },
     selectfield : {
         type:String,
-        enum:['Patients' ,' Doctors'] ,
+        enum:['Patient' ,'Doctor'] ,
         required:true,
     }
 },{timestamps:true})
