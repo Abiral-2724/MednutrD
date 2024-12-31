@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { User, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -202,6 +203,15 @@ const Register = () => {
             >
               {loading ? 'Creating account...' : 'Create Account'}
             </Button>
+            <div className="text-center text-sm">
+              <span className="text-gray-600">Already have a account ? </span>
+              <Link 
+                to="/login" 
+                className="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Login
+              </Link>
+            </div>
           </form>
         </CardContent>
       </Card>
