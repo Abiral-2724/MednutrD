@@ -4,8 +4,8 @@
   "description": "A Comprehensive Telemedicine and Virtual Healthcare Platform",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon backend/index.js",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend" ,
+    "dev": "nodemon backend/index.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "nodemon backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
