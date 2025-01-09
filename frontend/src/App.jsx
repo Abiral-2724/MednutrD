@@ -5,6 +5,12 @@ import Register from './Pages/Register';
 import Login from './Pages/Login';
 import PatientHome from './Pages/PatientHome';
 import DoctorHome from './Pages/DoctorHome';
+import Navbar from './Pages/Navbar';
+import Explore from './Pages/Explore';
+import DietChart from './Pages/DietChart';
+import Consulation from './Pages/Consultation';
+import Cart from './Pages/Cart';
+
 
 const appRouter = createBrowserRouter([
   {
@@ -22,7 +28,27 @@ const appRouter = createBrowserRouter([
   {
     path:'/login',
     element:<Login></Login>
-  } 
+  } ,
+  {
+    path:'/navbar',
+    element:<Navbar/>
+  },
+  {
+    path:'/explore',
+    element:<Explore/>
+  },
+  {
+    path :'/dietchart',
+    element:<DietChart/>
+  },
+  {
+    path:'/consultation',
+    element:<Consulation/>
+  },
+  {
+    path:'/cart',
+    element:<Cart/>
+  },
 ])
 function App() {
   

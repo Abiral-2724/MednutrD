@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Mail, Lock, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -47,7 +48,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+   <div>
+    <Navbar/>
+     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">Welcome Back</CardTitle>
@@ -126,6 +129,7 @@ const Login = () => {
         </CardContent>
       </Card>
     </div>
+   </div>
   );
 };
 
