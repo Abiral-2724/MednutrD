@@ -10,301 +10,134 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const PatientHome = () => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState("50");
+  
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-50">
       <Navbar />
-      <div>
-        <h1
-          style={{ fontSize: "45px", fontWeight: "bold", textAlign: "center" }}
-        >
-          <Typewriter
-            options={{
-              strings: ["Wanna! Book A Virtual CheckUp?"],
-              autoStart: true,
-              loop: true,
-            }}
+      <div className="container mx-auto px-4">
+        <div className="py-12">
+          <h1 className="text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+            <Typewriter
+              options={{
+                strings: ["Wanna! Book A Virtual CheckUp?"],
+                autoStart: true,
+                loop: true,
+              }}
+            />
+          </h1>
+          <h4 className="text-center mt-4">
+            <span 
+              className="text-blue-600 hover:text-blue-800 cursor-pointer text-lg font-semibold transition-colors"
+              onClick={() => navigate()}
+            >
+              Book? Click here
+            </span>
+          </h4>
+        </div>
+
+        <div className="relative max-w-2xl mx-auto">
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
           />
-        </h1>
-        <h4
-          style={{ textAlign: "center", color: "blue" }}
-          onClick={() => navigate()}
-        >
-          Book?Click here
-        </h4>
-      </div>
-      <div style={{ position: "relative", margin: "20px auto", width: "40%" }}>
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          style={{
-            position: "absolute",
-            left: "10px",
-            top: "35%",
-            transform: "translateY(-50%)",
-            color: "#aaa",
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Search based on Location and Specialization"
-          style={{
-            width: "100%",
-            padding: "10px 10px 10px 35px",
-            borderRadius: "5px",
-            marginBottom: "20px",
-            border: "1px solid #ccc",
-            backgroundColor: "whitesmoke",
-          }}
-        />
-      </div>
-      <Card />
-      <div
-        style={{
-          margin: "20px 0",
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
-      >
-        <input
-          type="range"
-          min="0"
-          max="500"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          style={{ width: "50%" }}
-        />
-        <p>
-          {" "}
-          <b> Amount: ${amount}</b>
-        </p>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "30px",
-          marginBottom: "20px",
-        }}
-      >
-        <button
-          style={{
-            padding: "10px 20px",
-            width: "170px",
-            height: "65px",
-            backgroundColor: "black",
-            color: "white",
-            borderRadius: "10px",
-          }}
-          onClick={()=> navigate('/consultation')}
-        >
-          Book a Consultations
-        </button>
-        <button
-          style={{
-            padding: "10px 20px",
-            width: "170px",
-            height: "65px",
-            backgroundColor: "black",
-            color: "white",
-            borderRadius: "10px",
-          }}
-          onClick={() => navigate("/dietchart")}
-        >
-          Create Your Diet Chart
-        </button>
-        <button
-          style={{
-            padding: "10px 20px",
-            width: "170px",
-            height: "65px",
-            backgroundColor: "black",
-            color: "white",
-            borderRadius: "10px",
-          }}
-        >
-          Purchase Your Medicine
-        </button>
-        <button
-          style={{
-            padding: "10px 20px",
-            width: "170px",
-            height: "65px",
-            backgroundColor: "black",
-            color: "white",
-            borderRadius: "10px",
-          }}
-        >
-          Subscription
-        </button>
-      </div>
-      <div>
-        <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>
-          Feedbacks and Reviews
-        </h1>
-        <div
-          style={{ display: "flex", marginTop: "20px", marginBottom: "20px" }}
-        >
-          <div
-            style={{
-              border: "1px solid #ddd",
-              padding: "15px",
-              borderRadius: "10px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              background:
-                "linear-gradient(90deg, rgba(109, 167, 231, 1) 0%, rgba(174, 153, 217, 1) 100%)",
-              textAlign: "left",
-              marginRight: "30px",
-              marginLeft: "10px",
-              width: "650px",
-            }}
-          >
-            <h2>
-              <b> Ross Geller</b>
-            </h2>
-            <div className="stars">⭐⭐⭐⭐☆</div>
-            <p>
-              {" "}
-              It's amazing! and highly recommended as it has the virtual
-              Consultations that save time
-            </p>
-          </div>
-          <div
-            style={{
-              border: "1px solid #ddd",
-              padding: "15px",
-              borderRadius: "10px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              background:
-                "linear-gradient(90deg, rgba(109, 167, 231, 1) 0%, rgba(174, 153, 217, 1) 100%)",
-              textAlign: "left",
-              marginRight: "30px",
-              width: "650px",
-            }}
-          >
-            <h2>
-              <b>Chandler Bing</b>
-            </h2>
-            <div className="stars">⭐⭐⭐⭐⭐</div>
-            <p>
-              It saves lot of time as it is a virtual consultation and buying
-              the particular medicine. Highly recommend!
-            </p>
-          </div>
-          <div
-            style={{
-              border: "1px solid #ddd",
-              padding: "15px",
-              borderRadius: "10px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              background:
-                "linear-gradient(90deg, rgba(109, 167, 231, 1) 0%, rgba(174, 153, 217, 1) 100%)",
-              textAlign: "left",
-              marginRight: "30px",
-              width: "650px",
-            }}
-          >
-            <h2>
-              <b>Joey Chindel</b>
-            </h2>
-            <div className="stars">⭐⭐⭐⭐⭐</div>
-            <p>
-              It saves lot of time as it is a virtual consultation and buying
-              the particular medicine. Highly recommend!
-            </p>
-          </div>
-          <div
-            style={{
-              border: "1px solid #ddd",
-              padding: "15px",
-              borderRadius: "10px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              background:
-                "linear-gradient(90deg, rgba(109, 167, 231, 1) 0%, rgba(174, 153, 217, 1) 100%)",
-              textAlign: "left",
-              marginRight: "30px",
-              width: "650px",
-            }}
-          >
-            <h2>
-              <b>Robert Rohanda</b>
-            </h2>
-            <div className="stars">⭐⭐⭐⭐☆</div>
-            <p>
-              {" "}
-              It's amazing! and highly recommended as it has the virtual
-              Consultations that save time
-            </p>
+          <input
+            type="text"
+            placeholder="Search based on Location and Specialization"
+            className="w-full py-4 pl-12 pr-4 rounded-xl border border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
+          />
+        </div>
+
+        <div className="mt-8">
+          <Card />
+        </div>
+
+        <div className="flex items-center justify-center gap-8 my-8">
+          <input
+            type="range"
+            min="0"
+            max="500"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            className="w-1/2 h-3 bg-blue-200 rounded-xl appearance-none cursor-pointer"
+          />
+          <p className="text-xl font-bold text-gray-800">Amount: ${amount}</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-12">
+          {[
+            { text: "Book a Consultations", route: "/consultation" },
+            { text: "Create Your Diet Chart", route: "/dietchart" },
+            { text: "Purchase Your Medicine", route: "/purchasemedicine" },
+            { text: "Subscription", route: "/subscription" }
+          ].map((button, i) => (
+            <button
+              key={i}
+              onClick={() => button.route && navigate(button.route)}
+              className="p-6 bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 font-medium"
+            >
+              {button.text}
+            </button>
+          ))}
+        </div>
+
+        <div className="mb-16">
+          <h1 className="text-4xl font-bold mb-8">Feedbacks and Reviews</h1>
+          <div className="flex gap-6 overflow-x-auto pb-4">
+            {[
+            { name: "Monica Geller", stars: "⭐⭐⭐⭐⭐" },
+            { name: "Rachel Green", stars: "⭐⭐⭐⭐☆" },
+            { name: "Phoebe Buffay", stars: "⭐⭐⭐⭐⭐" },
+            { name: "Janice Litman", stars: "⭐⭐⭐☆☆" },
+            { name: "Mike Hannigan", stars: "⭐⭐⭐⭐☆" },
+            { name: "Gunther Centralperk", stars: "⭐⭐⭐☆☆" },
+            { name: "Richard Burke", stars: "⭐⭐⭐⭐☆" },
+            { name: "Emily Waltham", stars: "⭐⭐⭐☆☆" },
+            { name: "David Scientist", stars: "⭐⭐⭐⭐☆" },
+            { name: "Carol Willick", stars: "⭐⭐⭐⭐☆" },
+            
+            ].map((review, i) => (
+              <div
+                key={i}
+                className="flex-none w-80 p-6 rounded-xl shadow-lg bg-gradient-to-br from-blue-500 to-indigo-500 transform hover:scale-105 transition-transform duration-200"
+              >
+                <h2 className="text-2xl font-bold text-white mb-3">{review.name}</h2>
+                <div className="text-lg mb-3">{review.stars}</div>
+                <p className="text-white text-opacity-90">
+                  It's amazing! and highly recommended as it has the virtual
+                  Consultations that save time
+                </p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
-        <h2 style={{ fontSize: "30px", fontWeight: "bold" }}>Contact Us</h2>
-        <form
-          style={{
-            width: "900px",
-            height: "300px",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            background:
-              "linear-gradient(90deg, rgba(109, 167, 231, 1) 0%, rgba(174, 153, 217, 1) 100%)",
-            borderRadius: "10px",
-            marginLeft: "20%",
-          }}
-        >
-          <input
-            type="email"
-            placeholder="Enter your email"
-            required
-            style={{
-              width: "50%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-              backgroundColor: "whitesmoke",
-              marginBottom: "20px",
-              borderRadius: "8px",
-              marginTop: "20px",
-            }}
-          />
-          <textarea
-            placeholder="Describe your problem"
-            rows="4"
-            required
-            style={{
-              width: "80%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              backgroundColor: "whitesmoke",
-              marginbottom: "20px",
-            }}
-          ></textarea>
-          <div>
+
+        <div className="mb-16">
+          <h2 className="text-4xl font-bold text-center mb-8">Contact Us</h2>
+          <form className="max-w-4xl mx-auto p-8 rounded-xl shadow-lg bg-gradient-to-br from-blue-500 to-indigo-500">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              className="w-1/2 p-4 rounded-lg mb-6 focus:ring-2 focus:ring-blue-500 transition-shadow"
+            />
+            <textarea
+              placeholder="Describe your problem"
+              rows="4"
+              required
+              className="w-4/5 p-4 rounded-lg mb-6 focus:ring-2 focus:ring-blue-500 transition-shadow"
+            ></textarea>
             <button
               type="submit"
-              style={{
-                padding: "10px 20px",
-                width: "170px",
-                height: "55px",
-                backgroundColor: "black",
-                color: "white",
-                borderRadius: "10px",
-                marginTop: "10px",
-              }}
+              className="px-8 py-4 bg-black text-white rounded-lg hover:bg-gray-800 transform hover:-translate-y-1 transition-all duration-200"
             >
               Submit
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-      <footer
-        style={{
-          textAlign: "center",
-          padding: "10px",
-          backgroundColor: "#f8f9fa",
-          borderTop: "1px solid #ddd",
-        }}
-      >
-        <p>&copy; 2025 MedNutr. All rights reserved.</p>
+
+      <footer className="bg-white shadow-md py-6">
+        <p className="text-center text-gray-600">&copy; 2025 MedNutr. All rights reserved.</p>
       </footer>
     </div>
   );

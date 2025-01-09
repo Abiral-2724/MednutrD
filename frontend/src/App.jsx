@@ -10,6 +10,8 @@ import Explore from './Pages/Explore';
 import DietChart from './Pages/DietChart';
 import Consulation from './Pages/Consultation';
 import Cart from './Pages/Cart';
+import Subscription from './Pages/Subscription';
+import Medicine from './Pages/Medicine';
 
 
 const appRouter = createBrowserRouter([
@@ -49,6 +51,15 @@ const appRouter = createBrowserRouter([
     path:'/cart',
     element:<Cart/>
   },
+  {
+    path:'subscription',
+    element : <Subscription></Subscription>
+  },
+  {
+    
+    path:'purchasemedicine',
+    element: <Medicine></Medicine>
+  }
 ])
 function App() {
   
