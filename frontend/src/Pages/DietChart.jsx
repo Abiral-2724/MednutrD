@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
-import { useState } from "react";
 
 const DietChart = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -229,137 +228,81 @@ const DietChart = () => {
     },
   };
 
-  const days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const meals = ["Breakfast", "Lunch", "Evening Snack", "Dinner"];
 
-  const handleDropdownChange = (e) => {
-    setSelectedOption(e.target.value);
-    setCustomProblem("");
-  };
-
-  const handlePublish = () => {
-    alert(`Your problem: ${customProblem}`);
-  };
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-purple-50">
       <Navbar />
-      <h1 style={{ fontSize: "30px", fontWeight: "bold", textAlign: "center" }}>
-        Create Your Diet With Us!
-      </h1>
-      <select
-        value={selectedOption}
-        onChange={handleDropdownChange}
-        style={{
-          padding: "10px",
-          width: "380px",
-          border: "2px solid black",
-          backgroundColor: "whitesmoke",
-          borderRadius: "15px",
-          marginLeft: "38%",
-          marginTop: "25px",
-          marginBottom: "10px",
-        }}
-      >
-        <option value="">Select an option</option>
-        <option value="Sugar">Sugar</option>
-        <option value="Headache">Headache</option>
-        <option value="SeverePain">Severe Pain in Joints</option>
-        <option value="Obesity">Obesity</option>
-        <option value="BP">BP</option>
-        <option value="Others">Others</option>
-      </select>
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+          Create Your Diet With Us!
+        </h1>
 
-      {selectedOption && selectedOption !== "Others" && (
-        <table
-          border="1"
-          style={{
-            marginTop: "20px",
-            width: "80%",
-            textAlign: "center",
-            border: "5px solid black",
-            marginLeft: "10%",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            background:
-              "linear-gradient(90deg, rgba(109, 167, 231, 1) 0%, rgba(174, 153, 217, 1) 100%)",
-          }}
-        >
-          <thead>
-            <tr style={{ border: "5px solid black", height: "45px" }}>
-              <th style={{ border: "5px solid black", height: "45px" }}>Day</th>
-              {meals.map((meal, index) => (
-                <th
-                  key={index}
-                  style={{ border: "5px solid black", height: "45px" }}
-                >
-                  {meal}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody style={{ border: "5px solid black", height: "450px" }}>
-            {days.map((day, dayIndex) => (
-              <tr key={dayIndex}>
-                <td style={{ border: "5px solid black", height: "45px" }}>
-                  {day}
-                </td>
-                {meals.map((meal, mealIndex) => (
-                  <td
-                    key={mealIndex}
-                    style={{ border: "5px solid black", height: "45px" }}
-                  >
-                    {dietData[selectedOption] && dietData[selectedOption][day]
-                      ? dietData[selectedOption][day][mealIndex]
-                      : "No Data"}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {selectedOption === "Others" && (
-        <div style={{ marginTop: "20px", display: "flex" }}>
-          <textarea
-            placeholder="Describe your problem"
-            value={customProblem}
-            onChange={(e) => setCustomProblem(e.target.value)}
-            style={{
-              width: "70%",
-              height: "90px",
-              padding: "10px",
-              border: "2px solid black",
-              borderRadius: "20px",
-              marginTop: "20px",
-              marginLeft: "10%",
-              backgroundColor: "whitesmoke",
-              marginRight: "20px",
-            }}
-          ></textarea>
-          <br />
-          <button
-            onClick={handlePublish}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "black",
-              color: "white",
-              borderRadius: "5px",
-              height: "50px",
-              marginTop: "40px",
-            }}
+        <div className="max-w-md mx-auto mb-8">
+          <select
+            value={selectedOption}
+            onChange={(e) => setSelectedOption(e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl bg-white shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all"
           >
-            Publish
-          </button>
+            <option value="">Select an option</option>
+            <option value="Sugar">Sugar</option>
+            <option value="Headache">Headache</option>
+            <option value="SeverePain">Severe Pain in Joints</option>
+            <option value="Obesity">Obesity</option>
+            <option value="BP">BP</option>
+            <option value="Others">Others</option>
+          </select>
         </div>
-      )}
+
+        {selectedOption && selectedOption !== "Others" && (
+          <div className="overflow-x-auto rounded-xl shadow-lg">
+            <table className="w-full bg-gradient-to-r from-blue-400 to-purple-400 text-white">
+              <thead>
+                <tr>
+                  <th className="p-4 border-2 border-white font-bold">Day</th>
+                  {meals.map((meal, index) => (
+                    <th key={index} className="p-4 border-2 border-white font-bold">
+                      {meal}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {days.map((day, dayIndex) => (
+                  <tr key={dayIndex} className="hover:bg-white/10 transition-colors">
+                    <td className="p-4 border-2 border-white font-semibold">{day}</td>
+                    {meals.map((meal, mealIndex) => (
+                      <td key={mealIndex} className="p-4 border-2 border-white">
+                        {dietData[selectedOption]?.[day]?.[mealIndex] || "No Data"}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {selectedOption === "Others" && (
+          <div className="max-w-4xl mx-auto mt-8">
+            <div className="flex flex-col md:flex-row gap-4">
+              <textarea
+                placeholder="Describe your problem"
+                value={customProblem}
+                onChange={(e) => setCustomProblem(e.target.value)}
+                className="flex-1 p-4 border-2 border-gray-300 rounded-xl bg-white shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 resize-none h-32"
+              />
+              <button
+                onClick={() => alert(`Your problem: ${customProblem}`)}
+                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 font-semibold"
+              >
+                Publish
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
