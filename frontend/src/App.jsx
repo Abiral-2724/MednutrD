@@ -15,6 +15,7 @@ import Medicine from './Pages/Medicine';
 import Schedule from './Pages/Schedule';
 import Scheduleavideocall from './Pages/Scheduleavideocall';
 import DoctorServece from './Pages/DoctorServece';
+import Chatbot from './Pages/Chatbot';
 
 
 const appRouter = createBrowserRouter([
@@ -59,7 +60,6 @@ const appRouter = createBrowserRouter([
     element : <Subscription></Subscription>
   },
   {
-    
     path:'purchasemedicine',
     element: <Medicine></Medicine>
   },{
@@ -71,6 +71,10 @@ const appRouter = createBrowserRouter([
   },{
     path:'doctor-services',
     element:<DoctorServece></DoctorServece>
+  },
+  {
+    path:'chatbot',
+    element:<Chatbot/>
   }
 ])
 function App() {

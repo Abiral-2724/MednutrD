@@ -15,26 +15,6 @@ const Navbar = () => {
               alt="Logo"
               className="w-16 h-16 mix-blend-multiply hover:scale-105 transition-transform"
             />
-            <div className="hidden md:flex ml-8 space-x-6">
-              <button
-                onClick={() => navigate("/")}
-                className="text-white hover:text-blue-100 transition-colors"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => navigate("/dietchart")}
-                className="text-white hover:text-blue-100 transition-colors"
-              >
-                Diet Chart
-              </button>
-              <button
-                onClick={() => navigate("/consultation")}
-                className="text-white hover:text-blue-100 transition-colors"
-              >
-                Consultation
-              </button>
-            </div>
           </div>
           
           <div className="flex items-center space-x-4">
