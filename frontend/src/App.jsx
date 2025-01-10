@@ -12,6 +12,9 @@ import Consulation from './Pages/Consultation';
 import Cart from './Pages/Cart';
 import Subscription from './Pages/Subscription';
 import Medicine from './Pages/Medicine';
+import Schedule from './Pages/Schedule';
+import Scheduleavideocall from './Pages/Scheduleavideocall';
+import DoctorServece from './Pages/DoctorServece';
 
 
 const appRouter = createBrowserRouter([
@@ -59,6 +62,15 @@ const appRouter = createBrowserRouter([
     
     path:'purchasemedicine',
     element: <Medicine></Medicine>
+  },{
+    path : 'schedule',
+    element : <Schedule></Schedule>
+  },{
+    path : 'videocall',
+    element : <Scheduleavideocall></Scheduleavideocall>
+  },{
+    path:'doctor-services',
+    element:<DoctorServece></DoctorServece>
   }
 ])
 function App() {
