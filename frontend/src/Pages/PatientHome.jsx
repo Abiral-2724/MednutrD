@@ -6,10 +6,14 @@ import { useNavigate } from "react-router-dom";
 import Card from "./Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {MessageOutlined} from '@ant-design/icons'
+import './PatientHome.css'
+import Chatbot from './Chatbot'
 
 const PatientHome = () => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState("50");
+  const [showChatbot, setShowChatbot] = useState(false);
   
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-50">
@@ -135,6 +139,14 @@ const PatientHome = () => {
           </form>
         </div>
       </div>
+
+      <div className="chatbot-toggle" onClick={() => setShowChatbot(!showChatbot)}>
+        <MessageOutlined style={{ fontSize: '24px', color: 'white' }} />
+      </div>
+
+      {/* Chatbot */}
+      {showChatbot && <div className="chatbot-container"><Chatbot /></div>}
+      
 
       <footer className="bg-white shadow-md py-6">
         <p className="text-center text-gray-600">&copy; 2025 MedNutr. All rights reserved.</p>
