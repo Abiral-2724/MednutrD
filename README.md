@@ -155,7 +155,6 @@ cd mednutr
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Machine Learning**: Python, Scikit-learn, TensorFlow
-- **Cloud Services**: AWS/GCP/Azure (optional for deployment)
 
 ---
 
@@ -166,13 +165,3 @@ cd mednutr
 3. Commit your changes: `git commit -m 'Add some feature'`.
 4. Push to the branch: `git push origin feature-name`.
 5. Open a pull request.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-Feel free to customize the above file further according to your specific requirements!
