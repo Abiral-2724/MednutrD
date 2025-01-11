@@ -1,155 +1,210 @@
-import React from "react";
-import { useState } from "react";
-import Navbar from "./Navbar";
-import Typewriter from "typewriter-effect";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Typewriter from "typewriter-effect";
+import { MessageOutlined } from '@ant-design/icons';
+import { Search } from "lucide-react";
+import Navbar from "./Navbar";
 import Card from "./Card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import {MessageOutlined} from '@ant-design/icons'
-import './PatientHome.css'
-import Chatbot from './Chatbot'
+import Chatbot from './Chatbot';
 
 const PatientHome = () => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState("50");
   const [showChatbot, setShowChatbot] = useState(false);
   
+  const quickActions = [
+    { text: "Book a Consultation", route: "/consultation", 
+      description: "Schedule virtual checkups with healthcare professionals" },
+    { text: "Create Diet Chart", route: "/dietchart",
+      description: "Get personalized nutrition plans for your needs" },
+    { text: "Purchase Medicine", route: "/purchasemedicine",
+      description: "Order prescribed medications online" },
+    { text: "Subscription", route: "/subscription",
+      description: "Access premium healthcare benefits" }
+  ];
+
+  const reviews = [
+    { name: "Monica Geller", stars: "⭐⭐⭐⭐⭐", 
+      text: "The virtual consultations are incredibly convenient and time-saving!" },
+    { name: "Rachel Green", stars: "⭐⭐⭐⭐☆",
+      text: "Great experience with the diet planning feature. Very helpful!" },
+    { name: "Phoebe Buffay", stars: "⭐⭐⭐⭐⭐",
+      text: "The doctors are very professional and caring. Highly recommended!" },
+    // ... other reviews
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <Navbar />
-      <div className="container mx-auto px-4">
-        <div className="py-12">
-          <h1 className="text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-            <Typewriter
-              options={{
-                strings: ["Wanna! Book A Virtual CheckUp?"],
-                autoStart: true,
-                loop: true,
-              }}
-            />
-          </h1>
-          <h4 className="text-center mt-4">
-            <span 
-              className="text-blue-600 hover:text-blue-800 cursor-pointer text-lg font-semibold transition-colors"
-              onClick={() => navigate()}
+      <main className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <section className="py-16 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              <Typewriter
+                options={{
+                  strings: ["Your Health, Our Priority", "Virtual Care Made Simple"],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </h1>
+            <p className="text-xl text-gray-600 mb-8">
+              Access quality healthcare from the comfort of your home
+            </p>
+            <button 
+              onClick={() => navigate("/consultation")}
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
             >
-              Book? Click here
-            </span>
-          </h4>
-        </div>
-
-        <div className="relative max-w-2xl mx-auto">
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-          />
-          <input
-            type="text"
-            placeholder="Search based on Location and Specialization"
-            className="w-full py-4 pl-12 pr-4 rounded-xl border border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
-          />
-        </div>
-
-        <div className="mt-8">
-          <Card />
-        </div>
-
-        <div className="flex items-center justify-center gap-8 my-8">
-          <input
-            type="range"
-            min="0"
-            max="500"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="w-1/2 h-3 bg-blue-200 rounded-xl appearance-none cursor-pointer"
-          />
-          <p className="text-xl font-bold text-gray-800">Amount: ${amount}</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-12">
-          {[
-            { text: "Book a Consultations", route: "/consultation" },
-            { text: "Create Your Diet Chart", route: "/dietchart" },
-            { text: "Purchase Your Medicine", route: "/purchasemedicine" },
-            { text: "Subscription", route: "/subscription" }
-          ].map((button, i) => (
-            <button
-              key={i}
-              onClick={() => button.route && navigate(button.route)}
-              className="p-6 bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 font-medium"
-            >
-              {button.text}
+              Book Consultation
             </button>
-          ))}
-        </div>
+          </div>
+        </section>
 
-        <div className="mb-16">
-          <h1 className="text-4xl font-bold mb-8">Feedbacks and Reviews</h1>
-          <div className="flex gap-6 overflow-x-auto pb-4">
-            {[
-            { name: "Monica Geller", stars: "⭐⭐⭐⭐⭐" },
-            { name: "Rachel Green", stars: "⭐⭐⭐⭐☆" },
-            { name: "Phoebe Buffay", stars: "⭐⭐⭐⭐⭐" },
-            { name: "Janice Litman", stars: "⭐⭐⭐☆☆" },
-            { name: "Mike Hannigan", stars: "⭐⭐⭐⭐☆" },
-            { name: "Gunther Centralperk", stars: "⭐⭐⭐☆☆" },
-            { name: "Richard Burke", stars: "⭐⭐⭐⭐☆" },
-            { name: "Emily Waltham", stars: "⭐⭐⭐☆☆" },
-            { name: "David Scientist", stars: "⭐⭐⭐⭐☆" },
-            { name: "Carol Willick", stars: "⭐⭐⭐⭐☆" },
-            
-            ].map((review, i) => (
+        {/* Search Section */}
+        <section className="max-w-3xl mx-auto mb-16">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <input
+              type="text"
+              placeholder="Search doctors by specialty or location..."
+              className="w-full py-4 pl-12 pr-4 rounded-xl border-2 border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+            />
+          </div>
+        </section>
+
+        {/* Price Range Section */}
+        <section className="max-w-2xl mx-auto mb-16 bg-white p-8 rounded-xl shadow-lg">
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Consultation Budget</h2>
+          <div className="flex items-center gap-8">
+            <input
+              type="range"
+              min="0"
+              max="500"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="w-full h-3 bg-blue-200 rounded-xl appearance-none cursor-pointer"
+            />
+            <span className="text-xl font-bold text-blue-600">${amount}</span>
+          </div>
+        </section>
+
+        {/* Quick Actions */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-gray-800">Quick Actions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {quickActions.map((action, i) => (
               <div
                 key={i}
-                className="flex-none w-80 p-6 rounded-xl shadow-lg bg-gradient-to-br from-blue-500 to-indigo-500 transform hover:scale-105 transition-transform duration-200"
+                onClick={() => action.route && navigate(action.route)}
+                className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
               >
-                <h2 className="text-2xl font-bold text-white mb-3">{review.name}</h2>
-                <div className="text-lg mb-3">{review.stars}</div>
-                <p className="text-white text-opacity-90">
-                  It's amazing! and highly recommended as it has the virtual
-                  Consultations that save time
-                </p>
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">{action.text}</h3>
+                <p className="text-gray-600">{action.description}</p>
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Featured Doctors */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-gray-800">Featured Doctors</h2>
+          <Card />
+        </section>
+
+        {/* Reviews Section */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-gray-800">Patient Reviews</h2>
+          <div className="flex gap-6 overflow-x-auto pb-4">
+            {reviews.map((review, i) => (
+              <div
+                key={i}
+                className="flex-none w-96 p-6 rounded-xl shadow-lg bg-white border-2 border-gray-100"
+              >
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">{review.name}</h3>
+                <div className="text-lg mb-3">{review.stars}</div>
+                <p className="text-gray-600">{review.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Form */}
+        <section className="mb-16">
+          <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">Contact Us</h2>
+            <form className="space-y-6">
+              <div>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                  className="w-full p-4 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                />
+              </div>
+              <div>
+                <textarea
+                  placeholder="Describe your concern"
+                  rows="4"
+                  required
+                  className="w-full p-4 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      {/* Chatbot Toggle */}
+      <button 
+        onClick={() => setShowChatbot(!showChatbot)}
+        className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+      >
+        <MessageOutlined className="text-white text-2xl" />
+      </button>
+
+      {showChatbot && (
+        <div className="fixed bottom-24 right-8 w-96 h-[500px] bg-white rounded-xl shadow-2xl border-2 border-gray-100">
+          <Chatbot />
         </div>
+      )}
 
-        <div className="mb-16">
-          <h2 className="text-4xl font-bold text-center mb-8">Contact Us</h2>
-          <form className="max-w-4xl mx-auto p-8 rounded-xl shadow-lg bg-gradient-to-br from-blue-500 to-indigo-500">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              required
-              className="w-1/2 p-4 rounded-lg mb-6 focus:ring-2 focus:ring-blue-500 transition-shadow"
-            />
-            <textarea
-              placeholder="Describe your problem"
-              rows="4"
-              required
-              className="w-4/5 p-4 rounded-lg mb-6 focus:ring-2 focus:ring-blue-500 transition-shadow"
-            ></textarea>
-            <button
-              type="submit"
-              className="px-8 py-4 bg-black text-white rounded-lg hover:bg-gray-800 transform hover:-translate-y-1 transition-all duration-200"
-            >
-              Submit
-            </button>
-          </form>
+<footer className="bg-gray-900 text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <h3 className="text-2xl font-bold mb-6">MedNutr</h3>
+              <p className="text-gray-400">
+                Providing quality healthcare services with a focus on patient well-being and comfort.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-6">Quick Links</h3>
+              <ul className="space-y-3 text-gray-400">
+                <li className="hover:text-white cursor-pointer transition-colors">Home</li>
+                <li className="hover:text-white cursor-pointer transition-colors">Services</li>
+                <li className="hover:text-white cursor-pointer transition-colors">About Us</li>
+                <li className="hover:text-white cursor-pointer transition-colors">Contact</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-6">Working Hours</h3>
+              <div className="space-y-3 text-gray-400">
+                <p>Monday - Friday:<br />8:00 AM - 8:00 PM</p>
+                <p>Saturday - Sunday:<br />9:00 AM - 5:00 PM</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
+            <p>&copy; 2025 MedNutr. All rights reserved.</p>
+          </div>
         </div>
-      </div>
-
-      <div className="chatbot-toggle" onClick={() => setShowChatbot(!showChatbot)}>
-        <MessageOutlined style={{ fontSize: '24px', color: 'white' }} />
-      </div>
-
-      {/* Chatbot */}
-      {showChatbot && <div className="chatbot-container"><Chatbot /></div>}
-      
-
-      <footer className="bg-white shadow-md py-6">
-        <p className="text-center text-gray-600">&copy; 2025 MedNutr. All rights reserved.</p>
       </footer>
     </div>
   );
