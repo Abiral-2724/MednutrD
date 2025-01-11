@@ -156,7 +156,6 @@ cd mednutr
 - **Database**: MongoDB
 - **Machine Learning**: Python, Scikit-learn, TensorFlow
 
----
 
 ## Contribution
 
