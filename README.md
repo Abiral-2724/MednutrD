@@ -56,14 +56,15 @@ cd mednutr
 
 3. Create a `.env` file and add the following environment variables:
    ```env
-   MONGO_URI=<Your MongoDB Connection String>
-   PORT=5000
+   MONGO_URL =<Your MongoDB Connection String>
+   PORT=5004
    JWT_SECRET=<Your JWT Secret>
+   NODE_ENV=<Your Node Env secret>
    ```
 
 4. Start the backend server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ---
@@ -82,12 +83,12 @@ cd mednutr
 
 3. Create a `.env` file and add the following environment variable:
    ```env
-   REACT_APP_API_URL=http://localhost:5000
+   REACT_APP_API_URL=http://localhost:5004
    ```
 
 4. Start the frontend server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ---
