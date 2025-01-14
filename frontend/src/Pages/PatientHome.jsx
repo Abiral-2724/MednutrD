@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Typewriter from "typewriter-effect";
 import { MessageOutlined } from '@ant-design/icons';
+import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import Navbar from "./Navbar";
 import Card from "./Card";
 import Chatbot from './Chatbot';
+import Recommendation from "./Recommendation";
 
 const PatientHome = () => {
   const navigate = useNavigate();
@@ -74,18 +76,11 @@ const PatientHome = () => {
         </section>
 
         {/* Price Range Section */}
-        <section className="max-w-2xl mx-auto mb-16 bg-white p-8 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Consultation Budget</h2>
-          <div className="flex items-center gap-8">
-            <input
-              type="range"
-              min="0"
-              max="500"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className="w-full h-3 bg-blue-200 rounded-xl appearance-none cursor-pointer"
-            />
-            <span className="text-xl font-bold text-blue-600">${amount}</span>
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-gray-800">We Recommended</h2>
+          <Recommendation />
+          <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <Button className="w-30 bg-black hover:bg-gray-800" size="lg">Explore More Doctors</Button>
           </div>
         </section>
 
