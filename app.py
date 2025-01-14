@@ -3,6 +3,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers  import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+import os
+from dotenv import load_dotenv
 
 
 prompt = ChatPromptTemplate.from_template(
@@ -36,9 +39,11 @@ prompt = ChatPromptTemplate.from_template(
     """
 )
 
-
+#loading data into env
+load_dotenv()
 # LLM Model
-groq_api_key = 'ENTER GROQ API KEY here'
+groq_api_key = os.getenv("GROQ_API_KEY")
+print(groq_api_key)
 llm = ChatGroq(model='llama3-8b-8192', groq_api_key=groq_api_key)
 llm
 
@@ -54,20 +59,20 @@ qa_chain = (
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/generate', methods=['POST'])
 def generate_response():
     """API endpoint for streaming responses."""
     data = request.get_json()
-    question = data.get('question', '')
+    question = data.get('question', '').strip()
 
     if not question:
         return jsonify({"error": "Question is required"}), 400
 
     response = qa_chain.invoke(question)
 
-    return response
-
+    return jsonify({"answer": response}), 200
 
 # Run the Flask app
 def run_flask():

@@ -9,20 +9,24 @@ function Chatbot() {
 
   async function generateAnswer() {
     if (!question.trim()) return;
-    
+
     setIsLoading(true);
     setAnswer("loading");
-    
+
     try {
-      const response = await axios({
-        url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBlJVxPFwuyuPQMXD5JKBt4O5xRYwYlalM",
-        method: "post",
-        data: {
-          contents: [{ parts: [{ text: question }] }],
-        },
-      });
-      setAnswer(response["data"]["candidates"][0]["content"]["parts"][0]["text"]);
+      const response = await axios.post(
+        "http://127.0.0.1:5000/generate", 
+        { question },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      setAnswer(response.data.answer);
     } catch (error) {
+      console.error("Error generating answer:", error);
       setAnswer("Sorry, I couldn't generate an answer. Please try again.");
     } finally {
       setIsLoading(false);
@@ -30,7 +34,7 @@ function Chatbot() {
   }
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       generateAnswer();
     }
@@ -41,9 +45,7 @@ function Chatbot() {
       {/* Header */}
       <div className="flex items-center gap-2 p-4 border-b bg-white shadow-sm">
         <Bot className="w-6 h-6 text-blue-600" />
-        <h1 className="text-xl font-semibold text-gray-800">
-          Medical Assistant
-        </h1>
+        <h1 className="text-xl font-semibold text-gray-800">Medical Assistant</h1>
       </div>
 
       {/* Chat Area */}
@@ -56,7 +58,7 @@ function Chatbot() {
                 <p className="whitespace-pre-wrap">{question}</p>
               </div>
             </div>
-            
+
             {/* Bot Response */}
             <div className="flex justify-start">
               <div className="bg-white max-w-[80%] rounded-lg p-3 shadow-sm border border-gray-100">

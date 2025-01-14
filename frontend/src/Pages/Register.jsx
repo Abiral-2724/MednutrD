@@ -33,6 +33,7 @@ const Register = () => {
     gender: "",
     dob: "",
     medical: "",
+    location:"",
     selectfield: "",
     classfield: "",
   });
@@ -259,6 +260,22 @@ const Register = () => {
                     const files = Array.from(e.target.files);
                     handleFileUpload(files);
                   }}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="location">Location</Label>
+              <div className="relative">
+                <Input
+                  id="location"
+                  name="location"
+                  type="text"
+                  className="pl-8"
+                  placeholder="Enter Your Location"
+                  value={formData.location}
+                  onChange={handleChange}
                   required
                 />
               </div>
